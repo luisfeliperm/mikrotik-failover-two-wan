@@ -38,14 +38,14 @@ As variaveis **\$primaryInterface** e **\$gwPrimary** são diretamente ligadas, 
 
 Deve-se ficar atento ao "interval" do Scheduler para não rodar multiplos scripts simultaneamente
 
-Faça os calculos *****{icmpCount \* retry \* 2 (Targets) }*****, acrescente mais uns 4 segundos
+Faça os calculos *****{icmpCount \* retry \* 2 (Targets) }*****, acrescente mais uns 5 segundos
 
  Exemplo:
 `icmpCount = `4
 `retry = 3`
 `Target = 2 (Padrão do script)`
 
-***4 * 3 * 2 + 5  = 30 segundos***
+***4 * 3 * 2 + 5  = 29 segundos***
 
 
 ### *This is it, thanks!!*
