@@ -1,23 +1,9 @@
-################################################
-####
-####  Create 06/2023
-####  @author luisfeliperm
-#### 
-####  github.com/luisfeliperm
-####  Documentation: https://github.com/luisfeliperm/mikrotik-failover-two-wan
-####
-####  Comment language: pt-br
-####
-################################################
-
-
-
 # "primaryInterface", nome da interface principal, ex: pppoe-out1, ether1...
 :local primaryInterface "ppp-prismarede"
 # "principal" Comentário da rota do link principal
-:local gwPrimary "gwMain"
+:local gwPrimary "gwPrimary"
 # "gwBackup" Comentário da rota do link backup
-:local gwBackup    "gwSec"
+:local gwBackup    "gwBackup"
 # "icmpCount" Quantidade de pacotes ICMP a ser enviado.
 :local icmpCount 4
 # "retry" Numero de tentativas caso falhe o teste de ping
@@ -29,22 +15,6 @@
 :local gwCurrent
 
 
-:local stateRunning do={
-	:global isRunning
-	:if ($1 = "stopping") do={
-		# :log info "Fim do script"
-		:global isRunning false
-	} else={
-		:if ($isRunning = true) do={
-			:log warning "Execucao multipla do script Failover,  revise o time do scheduler ou redefina a variavel global!"
-			:return
-		} else={
-			# :log info "Iniciando Script"
-			:global isRunning true;
-		}
-	}
-}
-$stateRunning "starting";
 
 # Function troca Link
 :local AlterWan do={
@@ -112,4 +82,3 @@ $stateRunning "starting";
 		$AlterWan $gwBackup $gwPrimary
 	}
 }
-$stateRunning "stopping";
